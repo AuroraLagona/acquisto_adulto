@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Acquisto Biglietti</title>
+    <link rel="stylesheet" href="stile.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="header-acquisto">
+        <div class="container">
+            <h1>Acquisto Biglietti</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="sezione-dati">
+            <h2>I tuoi dati</h2>
+            <form id="form-dati">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefono">Telefono:</label>
+                <input type="text" id="telefono" name="telefono" required>
+
+                <button type="button" id="btn-next-2">Prosegui al Pagamento</button>
+            </form>
+        </section>
+
+
+        <section id="sezione-pagamento" class="sezione" style="display: none;">
+            <h2>Metodo di pagamento</h2>
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" name="pagamento" value="credit_card" checked>
+                    <label for="credit_card">
+                        Carta di Credito
+                    </label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" name="pagamento" value="paypal">
+                    <label for="paypal">
+                    PayPal
+                    </label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" name="pagamento" value="bonifico">
+                    <label for="bonifico">
+                     Bonifico Bancario
+                    </label>
+                </div>
+            </div>
+            <button type="button" id="btn-finalizza">Riepilogo e Completa l'Acquisto</button>
+        </section>
+
+   
+        <section id="riepilogo-dati" class="sezione" style="display: none;">
+            <h2>Riepilogo Acquisto</h2>
+            <div id="riepilogo-contenuto">
+                <p><strong>Biglietto:</strong> <span id="riepilogo-biglietto">Biglietto adulto - 5,00€</span></p>
+                <p><strong>Nome:</strong> <span id="riepilogo-nome"></span></p>
+                <p><strong>Email:</strong> <span id="riepilogo-email"></span></p>
+                <p><strong>Telefono:</strong> <span id="riepilogo-telefono"></span></p>
+                <p><strong>Metodo di Pagamento:</strong> <span id="riepilogo-pagamento"></span></p>
+            </div>
+            <button type="button" id="btn-completa">Completa Acquisto</button>
+        </section>
+    </div>
+
+    <footer id="footer-acquisto">
+        <div class="container">
+            <p>&copy; 2024 Isola Bella. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script>
+
+        document.getElementById('btn-next-2').addEventListener('click', function() {
+            document.getElementById('sezione-dati').style.display = 'none';
+            document.getElementById('sezione-pagamento').style.display = 'block';
+
+            document.getElementById('riepilogo-biglietto').textContent = "Biglietto Adulti - 5,00€";  // Fisso
+            document.getElementById('riepilogo-nome').textContent = document.getElementById('nome').value;
+            document.getElementById('riepilogo-email').textContent = document.getElementById('email').value;
+            document.getElementById('riepilogo-telefono').textContent = document.getElementById('telefono').value;
+        });
+
+        document.getElementById('btn-finalizza').addEventListener('click', function() {
+            document.getElementById('sezione-pagamento').style.display = 'none';
+            document.getElementById('riepilogo-dati').style.display = 'block';
+
+            document.getElementById('riepilogo-pagamento').textContent = document.querySelector('input[name="pagamento"]:checked').value;
+        });
+
+     
+        document.getElementById('btn-completa').addEventListener('click', function() {
+            alert('Acquisto completato con successo!');
+            window.location.href = "index.html"; 
+        });
+    </script>
+</body>
+</html>
